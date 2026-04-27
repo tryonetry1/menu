@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Menu</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    .item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .name {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .price {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Menu</h1>
+  <div id="menu"></div>
+
+  <script>
+    fetch("https://opensheet.elk.sh/1Z8eEMGM6QEwfsrlo4xUxPInbyuatw01H/menu")
+      .then(res => res.json())
+      .then(data => {
+        let html = "";
+
+        data.forEach(item => {
+          html += `
+            <div class="item">
+              <div class="name">${item.nome}</div>
+              <div class="price">€ ${item.prezzo}</div>
+            </div>
+          `;
+        });
+
+        document.getElementById("menu").innerHTML = html;
+      });
+  </script>
+
+</body>
+</html>
